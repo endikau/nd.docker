@@ -9,3 +9,6 @@ services:
     working_dir: /project
     volumes:
       - .:/project
+      - ./conda_cache:/conda_cache
+      - ./renv_cache:/renv_cache
+      - ./outtest:/output
