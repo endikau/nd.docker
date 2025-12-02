@@ -25,6 +25,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
+          file: Dockerfile.quarto_render
           context: .
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/quarto_render:latest
