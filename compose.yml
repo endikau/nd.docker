@@ -1,0 +1,11 @@
+services:
+  quarto_render:
+    container_name: quarto_render
+    image: quarto_render:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.quarto_render
+    pull_policy: never
+    working_dir: /project
+    volumes:
+      - .:/project

@@ -1,0 +1,35 @@
+FROM condaforge/miniforge3:24.7.1-0
+SHELL ["/bin/bash", "-c"]
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Europe/Berlin \
+    CONDA_ENV=quarto_render
+    # \
+    # RENV_PATHS_LIBRARY=/opt/renv/library \
+    # RENV_PATHS_CACHE=/opt/renv/cache \
+    # RENV_CONFIG_CACHE_SYMLINKS=FALSE
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      build-essential curl git locales tzdata \
+      libcairo2-dev libcurl4-openssl-dev libfontconfig1-dev \
+      libfreetype6-dev libfribidi-dev libgit2-dev libglpk-dev \
+      libharfbuzz-dev libicu-dev libjpeg-dev libmagick++-dev \
+      libnode-dev libpango1.0-dev libpng-dev libpoppler-cpp-dev \
+      libprotobuf-dev protobuf-compiler libssl-dev libtiff5-dev libxml2-dev && \
+    # sed -i 's/# de_DE.UTF-8 UTF-8/de_DE.UTF-8 UTF-8/' /etc/locale.gen && \
+    # locale-gen && \
+    rm -rf /var/lib/apt/lists/*
+
+# Create conda env with pinned versions
+RUN conda config --add channels conda-forge && conda config --set channel_priority strict && \
+    conda create -y -n ${CONDA_ENV} \
+      r-base=4.5.1 \
+      python=3.10.16 \
+      quarto=1.5.57 \
+      hugo=0.139.3 && \
+    conda clean -afy
+
+ENV PATH=/opt/conda/envs/${CONDA_ENV}/bin:/opt/conda/bin:${PATH} \
+    CONDA_DEFAULT_ENV=${CONDA_ENV} \
+    PYENV_ROOT=/opt/conda/envs/${CONDA_ENV}
