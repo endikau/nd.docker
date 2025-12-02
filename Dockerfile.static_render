@@ -1,6 +1,8 @@
 FROM condaforge/miniforge3:24.7.1-0
 SHELL ["/bin/bash", "-c"]
 
+ENV LALA=LOLO
+
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Europe/Berlin \
     CONDA_ENV=quarto_render \
