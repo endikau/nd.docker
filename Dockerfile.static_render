@@ -1,8 +1,6 @@
 FROM condaforge/miniforge3:24.7.1-0
 SHELL ["/bin/bash", "-c"]
 
-ENV LALA=LOLO
-
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Europe/Berlin \
     CONDA_ENV=quarto_render \
@@ -31,3 +29,5 @@ RUN conda config --add channels conda-forge && conda config --set channel_priori
 
 ENV PATH=/opt/conda/envs/${CONDA_ENV}/bin:/opt/conda/bin:${PATH} \
     CONDA_DEFAULT_ENV=${CONDA_ENV}
+
+RUN R -e "install.packages('renv', repos = 'http://cran.rstudio.com')"
