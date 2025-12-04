@@ -1,14 +1,16 @@
 services:
   quarto_render:
-    container_name: quarto_render
-    image: quarto_render:latest
+    container_name: static_render
+    image: static_render:latest
     build:
       context: .
-      dockerfile: Dockerfile.quarto_render
+      dockerfile: static_render.Dockerfile
     pull_policy: never
-    working_dir: /project
+    working_dir: /nd.site
     volumes:
-      - .:/project
-      - ./conda_cache:/conda_cache
-      - ./renv_cache:/renv_cache
-      - ./outtest:/output
+      - /home/rackelhahn69/Documents/endikau/nd.site:/nd.site
+    command: |
+      sleep 1000h
+      
+    # R -e "source('setup.R')"
+    # quarto render

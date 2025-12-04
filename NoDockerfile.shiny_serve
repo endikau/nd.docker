@@ -1,0 +1,3 @@
+FROM rocker/shiny-verse
+
+# CMD [ "sh" , "-c"]
