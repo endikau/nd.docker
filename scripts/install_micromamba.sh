@@ -26,9 +26,7 @@ cd "${TMPDIR}"
 curl -fsSLo install.sh \
   https://raw.githubusercontent.com/mamba-org/micromamba-releases/main/install.sh
 
-INIT_YES=no VERSION="${MICROMAMBA_VERSION}" bash ./install.sh
-
-export PATH="$HOME/.local/bin:$PATH"
+INIT_YES=no VERSION="${MICROMAMBA_VERSION}" BIN_FOLDER="/usr/local/bin" bash ./install.sh
 
 cd /
 rm -rf "${TMPDIR}"

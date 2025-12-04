@@ -12,14 +12,19 @@ function apt_install() {
 }
 
 apt_install \
-    libcurl4-openssl-dev
-
-install_extrainstall2.r --error --skipinstalled \
-        renv \
-        pak \
-        callr \
-        processx && \
-    rm -rf /tmp/downloaded_packages
+    libcurl4-openssl-dev \
+    libicu-dev \
+    libnode-dev \
+    libxml2-dev \
+    libmagick++-dev \
+    libpoppler-cpp-dev \
+    libglpk-dev \
+    libgsl0-dev \
+    libprotobuf-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    protobuf-compiler \
+    libprotoc-dev
 
 # Clean up
 rm -rf /var/lib/apt/lists/*

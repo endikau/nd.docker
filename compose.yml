@@ -1,16 +1,17 @@
-services:
-  quarto_render:
-    container_name: static_render
-    image: static_render:latest
-    build:
-      context: .
-      dockerfile: static_render.Dockerfile
-    pull_policy: never
-    working_dir: /nd.site
-    volumes:
-      - /home/rackelhahn69/Documents/endikau/nd.site:/nd.site
-    command: |
-      sleep 1000h
-      
-    # R -e "source('setup.R')"
-    # quarto render
+# services:
+#   quarto_render:
+#     container_name: static_render
+#     image: static_render:latest
+#     build:
+#       context: .
+#       dockerfile: static_render.Dockerfile
+#     pull_policy: never
+#     working_dir: /nd.site
+#     volumes:
+#       - ~/Documents/endikau/nd.site:/project
+#       - ~/Documents/endikau/.cache/container:/root/.cache
+#       - ~/Documents/endikau/.cache/static_site/container:/root/.cache
+#     command: |
+#       Rscript --vanilla setup_envs.R
+#       sleep infinity
+#       quarto render
