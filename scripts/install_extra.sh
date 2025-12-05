@@ -23,8 +23,10 @@ apt_install \
     libprotobuf-dev \
     libharfbuzz-dev \
     libfribidi-dev \
+    libprotoc-dev \
     protobuf-compiler \
-    libprotoc-dev
+    nodejs \
+    npm
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
