@@ -10,4 +10,4 @@ RUN /rocker_scripts/install_shiny_server.sh
 EXPOSE 3838
 CMD ["/init"]
 
-COPY scripts /rocker_scripts
+COPY scripts /nd_docker_scripts
