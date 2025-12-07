@@ -22,11 +22,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push image
+      - name: Build and push image 1
         uses: docker/build-push-action@v5
         with:
           file: static_render.Dockerfile
           context: .
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/nd_docker-static_render:latest
+
+      - name: Build and push image 2
+        uses: docker/build-push-action@v5
+        with:
+          file: shiny_serve.Dockerfile
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/nd_docker-shiny_serve:latest
 
