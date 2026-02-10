@@ -1,6 +1,6 @@
 FROM ghcr.io/linuxserver-labs/webhook:latest
 
-# Install packages, then install PyYAML via pip
+# Install packages
 RUN apk add --no-cache \
       bash \
       git \
@@ -8,8 +8,12 @@ RUN apk add --no-cache \
       docker-cli \
       docker-cli-compose \
       python3 \
-      py3-pip \
-    && pip3 install --no-cache-dir pyyaml
+      py3-pip
+      
+# Create a venv and install PyYAML there
+RUN python3 -m venv /opt/venv \
+    && /opt/venv/bin/pip install --no-cache-dir --upgrade pip \
+    && /opt/venv/bin/pip install --no-cache-dir pyyaml
 
 # Defaults baked into the image
 COPY other/defaults/ /defaults/
