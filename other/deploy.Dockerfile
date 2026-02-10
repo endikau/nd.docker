@@ -1,17 +1,15 @@
 FROM ghcr.io/linuxserver-labs/webhook:latest
 
-# Tools needed for deploy logic and cloning
+# Install packages, then install PyYAML via pip
 RUN apk add --no-cache \
-    bash \
-    git \
-    openssh-client \
-    docker-cli \
-    docker-cli-compose \
-    python3 \
-    # --- #
-    && pip3 install --no-cache-dir \ 
-    pyyaml
-
+      bash \
+      git \
+      openssh-client \
+      docker-cli \
+      docker-cli-compose \
+      python3 \
+      py3-pip \
+    && pip3 install --no-cache-dir pyyaml
 
 # Defaults baked into the image
 COPY other/defaults/ /defaults/
