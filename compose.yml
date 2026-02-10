@@ -3,8 +3,8 @@
 #     container_name: static_render
 #     image: static_render:latest
 #     build:
-#       context: ./rocker_based
-#       dockerfile: static_render.Dockerfile
+#       context: ./runtime
+#       dockerfile: static_serve.Dockerfile
 #     pull_policy: never
 #     working_dir: /nd.site
 #     volumes:

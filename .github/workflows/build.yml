@@ -22,26 +22,26 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push nd_docker-static_render
+      - name: Build and push nd_docker-static_serve
         uses: docker/build-push-action@v5
         with:
-          file: rocker_based/static_render.Dockerfile
-          context: rocker_based
+          file: runtime/static_serve.Dockerfile
+          context: runtime
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/nd_docker-static_render:latest
+          tags: ghcr.io/${{ github.repository_owner }}/nd_docker-static_serve:latest
 
       - name: Build and push nd_docker-shiny_serve
         uses: docker/build-push-action@v5
         with:
-          file: rocker_based/shiny_serve.Dockerfile
-          context: rocker_based
+          file: runtime/shiny_serve.Dockerfile
+          context: runtime
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/nd_docker-shiny_serve:latest
 
       - name: Build and push nd_docker-deploy
         uses: docker/build-push-action@v5
         with:
-          file: other/deploy.Dockerfile
+          file: deploy/deploy.Dockerfile
           context: .
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/nd_docker-deploy:latest
