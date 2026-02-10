@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+set -eu
+
+ROOT="${SWS_ROOT:-/project/_public}"
+PORT="${SWS_PORT:-8080}"
+
+exec static-web-server --root "${ROOT}" --port "${PORT}" --log-level info
