@@ -1,0 +1,16 @@
+repos:
+  endikau/nd.site:
+    dir: /state/repos/nd.site
+    branch: main
+    compose:
+      enabled: true
+      file: compose.yml
+      project_name: nd_site
+
+  endikau/nd.apps:
+    dir: /state/repos/nd.apps
+    branch: main
+    compose:
+      enabled: false
+      file: compose.yml
+      project_name: nd_apps

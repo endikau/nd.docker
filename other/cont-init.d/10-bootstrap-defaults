@@ -1,0 +1,25 @@
+#!/usr/bin/with-contenv sh
+set -eu
+
+log() { echo "[init] $*"; }
+
+# linuxserver images typically mount /config; ensure expected dirs exist
+mkdir -p /config/hooks
+
+if [ ! -f /config/hooks/hooks.json ]; then
+  log "installing default hooks.json"
+  cp /defaults/hooks.json /config/hooks/hooks.json
+fi
+
+if [ ! -f /config/config.yml ]; then
+  log "installing default config.yml"
+  cp /defaults/config.yml /config/config.yml
+fi
+
+# workspace for cloned repositories
+mkdir -p /state/repos
+
+# best-effort ownership so edits via PUID/PGID work; ignore if abc absent
+if id abc >/dev/null 2>&1; then
+  chown -R abc:abc /config /state 2>/dev/null || true
+fi

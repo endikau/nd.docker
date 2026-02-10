@@ -3,7 +3,7 @@
 #     container_name: static_render
 #     image: static_render:latest
 #     build:
-#       context: .
+#       context: ./rocker_based
 #       dockerfile: static_render.Dockerfile
 #     pull_policy: never
 #     working_dir: /nd.site
