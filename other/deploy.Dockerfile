@@ -8,7 +8,10 @@ RUN apk add --no-cache \
     docker-cli \
     docker-cli-compose \
     python3 \
-    py3-pyyaml
+    # --- #
+    && pip3 install --no-cache-dir \ 
+    pyyaml
+
 
 # Defaults baked into the image
 COPY other/defaults/ /defaults/
