@@ -19,10 +19,8 @@ COPY configs/shiny-server.conf /etc/shiny-server/shiny-server.conf
 EXPOSE 3838
 CMD ["/init"]
 
-RUN apt-get update \
- && apt-get install -y --no-install-recommends git-all  \
- && rm -rf /var/lib/apt/lists/*
-RUN curl -fsSL https://pyenv.run | bash
+COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
+RUN nd_docker_scripts/install_pyenv.sh
 
 # COPY scripts/install_micromamba.sh nd_docker_scripts/install_micromamba.sh
 # RUN nd_docker_scripts/install_micromamba.sh
