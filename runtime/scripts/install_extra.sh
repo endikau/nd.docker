@@ -28,7 +28,8 @@ apt_install \
     nodejs \
     npm \
     git-all \
-    locales-all
+    locales-all \
+    cmake
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
