@@ -27,7 +27,8 @@ apt_install \
     protobuf-compiler \
     nodejs \
     npm \
-    git-all
+    git-all \
+    locales-all
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
