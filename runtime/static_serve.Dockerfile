@@ -34,11 +34,6 @@ ENV MICROMAMBA_VERSION="2.4.0-0"
 COPY scripts/install_hugo.sh nd_docker_scripts/install_hugo.sh
 RUN nd_docker_scripts/install_hugo.sh
 
-# COPY scripts/install_micromamba.sh nd_docker_scripts/install_micromamba.sh
-# RUN nd_docker_scripts/install_micromamba.sh
-# ENV MAMBA_ROOT_PREFIX=/opt/micromamba
-# ENV PATH="/root/.local/bin:${PATH}"
-
 COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
 RUN nd_docker_scripts/install_pyenv.sh
 
