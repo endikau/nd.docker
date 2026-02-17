@@ -29,9 +29,7 @@ apt_install \
     npm \
     git-all \
     locales-all \
-    cmake \
-    python3-venv \
-    python3-pip
+    cmake
 
 # Clean up
 rm -rf /var/lib/apt/lists/*

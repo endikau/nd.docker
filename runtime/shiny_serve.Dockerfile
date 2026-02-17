@@ -19,8 +19,8 @@ COPY configs/shiny-server.conf /etc/shiny-server/shiny-server.conf
 EXPOSE 3838
 CMD ["/init"]
 
-COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
-RUN nd_docker_scripts/install_pyenv.sh
+# COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
+# RUN nd_docker_scripts/install_pyenv.sh
 
 COPY scripts/install_extra.sh nd_docker_scripts/install_extra.sh
 RUN nd_docker_scripts/install_extra.sh

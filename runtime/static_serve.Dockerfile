@@ -34,8 +34,8 @@ ENV MICROMAMBA_VERSION="2.4.0-0"
 COPY scripts/install_hugo.sh nd_docker_scripts/install_hugo.sh
 RUN nd_docker_scripts/install_hugo.sh
 
-COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
-RUN nd_docker_scripts/install_pyenv.sh
+# COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
+# RUN nd_docker_scripts/install_pyenv.sh
 
 COPY scripts/install_extra.sh nd_docker_scripts/install_extra.sh
 RUN nd_docker_scripts/install_extra.sh

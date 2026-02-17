@@ -14,7 +14,9 @@ function apt_install() {
 apt_install \
     curl \
     ca-certificates \
-    git
+    git \
+    python3-venv \
+    python3-pip
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
