@@ -10,6 +10,10 @@ ENV R_LIBS=/usr/local/lib/R/site-library
 ENV R_LIBS_SITE=/usr/local/lib/R/site-library
 ENV R_LIBS_USER=/usr/local/lib/R/site-library
 
+ENV PYENV_DEFAULT_PYTHON_VERSION="3.12.12"
+ENV PYENV_ROOT="/root/.pyenv"
+ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
+
 ENV S6_VERSION="v2.1.0.2"
 # ENV MICROMAMBA_VERSION="2.4.0-0"
 ENV SHINY_SERVER_VERSION="latest"
@@ -19,8 +23,8 @@ COPY configs/shiny-server.conf /etc/shiny-server/shiny-server.conf
 EXPOSE 3838
 CMD ["/init"]
 
-# COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
-# RUN nd_docker_scripts/install_pyenv.sh
+COPY scripts/install_pyenv.sh nd_docker_scripts/install_pyenv.sh
+RUN nd_docker_scripts/install_pyenv.sh
 
 COPY scripts/install_extra.sh nd_docker_scripts/install_extra.sh
 RUN nd_docker_scripts/install_extra.sh
