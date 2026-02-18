@@ -40,6 +40,9 @@ RUN nd_docker_scripts/install_hugo.sh
 COPY scripts/install_extra.sh nd_docker_scripts/install_extra.sh
 RUN nd_docker_scripts/install_extra.sh
 
+COPY scripts/setup_r.sh nd_docker_scripts/setup_r.sh
+RUN nd_docker_scripts/setup_r.sh
+
 COPY scripts /nd_docker_scripts
 
 # s6 service for static-web-server
