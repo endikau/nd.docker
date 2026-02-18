@@ -1,10 +1,10 @@
-# services:
-#   quarto_render:
-#     container_name: static_render
-#     image: static_render:latest
-#     build:
-#       context: ./runtime
-#       dockerfile: static_serve.Dockerfile
+services:
+  static_serve:
+    container_name: static_serve
+    image: static_serve:latest
+    build:
+      context: ./runtime
+      dockerfile: static_serve.Dockerfile
 #     pull_policy: never
 #     working_dir: /nd.site
 #     volumes:
