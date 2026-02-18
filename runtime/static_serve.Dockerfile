@@ -47,6 +47,7 @@ RUN nd_docker_scripts/install_extra.sh
 COPY scripts /nd_docker_scripts
 
 COPY configs/Renviron.site /etc/R/Renviron.site
+COPY configs/Rprofile.site /etc/R/Rprofile.site
 
 # s6 service for static-web-server
 COPY services/static-web-server /etc/services.d/static-web-server
