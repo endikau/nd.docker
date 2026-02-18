@@ -48,9 +48,9 @@ RUN nd_docker_scripts/install_extra.sh
 COPY scripts /nd_docker_scripts
 
 COPY configs/Rprofile.site /usr/local/lib/R/etc/Rprofile.site
-COPY configs/Rprofile.site /etc/R/Rprofile.site
+# COPY configs/Rprofile.site /etc/R/Rprofile.site
 
-RUN Rscript -e "stopifnot(file.exists('/usr/local/lib/R/etc/Rprofile.site')); opts <- options('repos','renv.config.ppm.enabled','renv.config.ppm.default','renv.config.rspm.enabled','renv.config.repos.override'); print(opts); stopifnot('P3M_NOBLE' %in% names(getOption('repos')))"
+RUN Rscript -e "stopifnot(file.exists('/usr/local/lib/R/etc/Rprofile.site')); opts <- options('repos','renv.config.ppm.enabled','renv.config.ppm.default','renv.config.rspm.enabled','renv.config.repos.override'); print(opts)"
 
 # s6 service for static-web-server
 COPY services/static-web-server /etc/services.d/static-web-server

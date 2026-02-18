@@ -1,8 +1,9 @@
 options(
   # Use P3M CRAN mirror by default
   repos = c(
-    P3M_NOBLE = "https://p3m.dev/cran/__linux__/noble/latest",
-    getOption("repos")
+    "https://p3m.dev/cran/__linux__/noble/latest"
+    # CRAN = "https://p3m.dev/cran/__linux__/noble/latest",
+    # getOption("repos")
   ),
   # renv configuration (equivalent to RENV_CONFIG_* env vars)
   renv.config.ppm.enabled      = TRUE,
