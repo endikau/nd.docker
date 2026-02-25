@@ -13,9 +13,9 @@ ENV R_PROFILE="/usr/local/lib/R/etc/Rprofile.site"
 
 ENV PYENV_DEFAULT_PYTHON_VERSION="3.12.12"
 ENV PYENV_ROOT="/root/.pyenv"
-ENV PATH="${PYENV_ROOT}/shims:${PATH}"
+ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 
-ENV S6_VERSION="v2.1.0"
+ENV S6_VERSION="v2.1.0.2"
 ENV SHINY_SERVER_VERSION="latest"
 
 RUN /rocker_scripts/install_shiny_server.sh
