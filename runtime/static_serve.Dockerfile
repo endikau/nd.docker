@@ -13,7 +13,7 @@ ENV R_PROFILE="/usr/local/lib/R/etc/Rprofile.site"
 
 ENV PYENV_DEFAULT_PYTHON_VERSION="3.12.12"
 ENV PYENV_ROOT="/root/.pyenv"
-ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
+ENV PATH="${PYENV_ROOT}/shims:${PATH}"
 
 ENV S6_VERSION="v2.1.0.2"
 ENV PANDOC_VERSION="default"
@@ -49,8 +49,6 @@ COPY scripts /nd_docker_scripts
 
 COPY configs/Rprofile.site /usr/local/lib/R/etc/Rprofile.site
 # COPY configs/Rprofile.site /etc/R/Rprofile.site
-
-RUN Rscript -e "stopifnot(file.exists('/usr/local/lib/R/etc/Rprofile.site')); opts <- options('repos','renv.config.ppm.enabled','renv.config.ppm.default','renv.config.rspm.enabled','renv.config.repos.override'); print(opts)"
 
 # s6 service for static-web-server
 COPY services/static-web-server /etc/services.d/static-web-server
