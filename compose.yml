@@ -2,7 +2,7 @@ services:
   static_serve:
     container_name: static_serve
     # image: ghcr.io/endikau/nd_docker-static_serve:latest
-    image: nd_docker-static_serve:local  
+    image: nd_docker-shiny_serve:local  
     # image: static_serve:latest
     # build:
     #   context: ./runtime
