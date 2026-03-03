@@ -37,8 +37,8 @@ rm -rf /var/lib/apt/lists/*
 curl -fsSL https://pyenv.run | bash
 
 # Make pyenv available in the current build shell
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 
 # Prepare login shell config: prefer ~/.bash_profile, otherwise ~/.profile
 LOGIN_SHELL_RC="$HOME/.bash_profile"
