@@ -12,7 +12,7 @@ ENV R_LIBS_USER=/usr/local/lib/R/site-library
 ENV R_PROFILE="/usr/local/lib/R/etc/Rprofile.site"
 
 ENV PYENV_DEFAULT_PYTHON_VERSION="3.12.12"
-ENV PYENV_ROOT="/opt/pyenv"
+ENV PYENV_ROOT="/root/.pyenv"
 ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${PATH}"
 
 ENV S6_VERSION="v2.1.0.2"
