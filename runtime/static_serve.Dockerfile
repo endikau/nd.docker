@@ -33,7 +33,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://get.static-web-server.net | sh -s -- --version ${SWS_VERSION} --bin-dir /usr/local/bin
 
-ENV HUGO_VERSION="0.152.2"
+ENV HUGO_VERSION="0.163.1"
 ENV MICROMAMBA_VERSION="2.4.0-0"
 
 COPY scripts/install_hugo.sh nd_docker_scripts/install_hugo.sh
