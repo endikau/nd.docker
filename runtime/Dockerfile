@@ -1,7 +1,9 @@
 # syntax=docker/dockerfile:1.7
 
 ARG R_VERSION=4.6.0
+ARG NODE_VERSION=24.17.0
 
+FROM node:${NODE_VERSION}-bookworm-slim AS node
 FROM rocker/r-ver:${R_VERSION} AS runtime
 
 ARG PYTHON_VERSION=3.12.12
@@ -23,6 +25,8 @@ COPY scripts/install_hugo.sh /opt/nd-docker/scripts/install_hugo.sh
 COPY scripts/install_pyenv.sh /opt/nd-docker/scripts/install_pyenv.sh
 COPY scripts/install_static_web_server.sh /opt/nd-docker/scripts/install_static_web_server.sh
 
+COPY --from=node /usr/local/ /usr/local/
+
 RUN chmod +x /opt/nd-docker/scripts/*.sh \
  && /rocker_scripts/install_s6init.sh \
  && /opt/nd-docker/scripts/install_extra.sh
@@ -31,7 +35,9 @@ RUN /opt/nd-docker/scripts/install_pyenv.sh
 
 RUN R --version \
  && python --version \
- && pyenv --version
+ && pyenv --version \
+ && node --version \
+ && npm --version
 
 COPY configs/Rprofile.site /usr/local/lib/R/etc/Rprofile.site
 

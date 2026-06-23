@@ -12,6 +12,7 @@ apt-get install -y --no-install-recommends \
     libgsl0-dev \
     libicu-dev \
     libmagick++-dev \
+    libnode-dev \
     libpoppler-cpp-dev \
     libfribidi-dev \
     libharfbuzz-dev \
