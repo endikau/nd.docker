@@ -14,7 +14,7 @@ Build all local targets:
 docker compose build
 ```
 
-Published images use the versioned tag `4.6.0-py3.12.12-v2` as well as
+Published images use the versioned tag `4.6.0-py3.12.12-v3` as well as
 `latest`. Application Dockerfiles should use the versioned tag.
 
 Quarto, Pandoc, and Hugo are build-only dependencies in `nd.site`. Node is

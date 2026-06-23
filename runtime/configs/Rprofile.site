@@ -1,19 +1,24 @@
-options(
-  repos = c(CRAN = "https://p3m.dev/cran/__linux__/noble/latest"),
-  download.file.method = "libcurl",
-  renv.config.ppm.enabled = TRUE,
-  renv.config.ppm.default = TRUE,
-  renv.config.rspm.enabled = TRUE,
-  renv.config.repos.override =
-    "https://packagemanager.posit.co/cran/__linux__/noble/latest",
-  HTTPUserAgent = sprintf(
-    "R/%s R (%s)",
-    getRversion(),
-    paste(
+local({
+  p3m_repo <- "https://packagemanager.posit.co/cran/__linux__/noble/latest"
+  cran_repo <- "https://cloud.r-project.org"
+  repos <- c(P3M = p3m_repo, CRAN = cran_repo)
+
+  options(
+    repos = repos,
+    download.file.method = "libcurl",
+    renv.config.ppm.enabled = TRUE,
+    renv.config.ppm.default = TRUE,
+    renv.config.rspm.enabled = TRUE,
+    renv.config.repos.override = repos,
+    HTTPUserAgent = sprintf(
+      "R/%s R (%s)",
       getRversion(),
-      R.version[["platform"]],
-      R.version[["arch"]],
-      R.version[["os"]]
+      paste(
+        getRversion(),
+        R.version[["platform"]],
+        R.version[["arch"]],
+        R.version[["os"]]
+      )
     )
   )
-)
+})
