@@ -1,8 +1,12 @@
-name: Build and publish Docker image
+name: Build and publish runtime images
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+
+env:
+  RUNTIME_TAG: 4.6.0-py3.12.12-v1
 
 jobs:
   build-and-push:
@@ -15,6 +19,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -22,26 +29,45 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push nd_docker-static_serve
-        uses: docker/build-push-action@v5
+      - name: Build and push common runtime
+        uses: docker/build-push-action@v6
         with:
-          file: runtime/static_serve.Dockerfile
           context: runtime
+          file: runtime/Dockerfile
+          target: runtime
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/nd_docker-static_serve:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/nd_docker-runtime:${{ env.RUNTIME_TAG }}
+            ghcr.io/${{ github.repository_owner }}/nd_docker-runtime:latest
+          cache-from: type=gha,scope=nd-docker-runtime
+          cache-to: type=gha,mode=max,scope=nd-docker-runtime
 
-      - name: Build and push nd_docker-shiny_serve
-        uses: docker/build-push-action@v5
+      - name: Build and push Shiny runtime
+        uses: docker/build-push-action@v6
         with:
-          file: runtime/shiny_serve.Dockerfile
           context: runtime
+          file: runtime/Dockerfile
+          target: shiny
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/nd_docker-shiny_serve:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/nd_docker-shiny_serve:${{ env.RUNTIME_TAG }}
+            ghcr.io/${{ github.repository_owner }}/nd_docker-shiny_serve:latest
+          cache-from: |
+            type=gha,scope=nd-docker-runtime
+            type=gha,scope=nd-docker-shiny
+          cache-to: type=gha,mode=max,scope=nd-docker-shiny
 
-      - name: Build and push nd_docker-deploy
-        uses: docker/build-push-action@v5
+      - name: Build and push static runtime
+        uses: docker/build-push-action@v6
         with:
-          file: deploy/deploy.Dockerfile
-          context: .
+          context: runtime
+          file: runtime/Dockerfile
+          target: static
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/nd_docker-deploy:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/nd_docker-static_serve:${{ env.RUNTIME_TAG }}
+            ghcr.io/${{ github.repository_owner }}/nd_docker-static_serve:latest
+          cache-from: |
+            type=gha,scope=nd-docker-runtime
+            type=gha,scope=nd-docker-static
+          cache-to: type=gha,mode=max,scope=nd-docker-static

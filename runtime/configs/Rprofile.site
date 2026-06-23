@@ -1,13 +1,19 @@
 options(
-  # Use P3M CRAN mirror by default
-  repos = c(
-    "https://p3m.dev/cran/__linux__/noble/latest"
-    # CRAN = "https://p3m.dev/cran/__linux__/noble/latest",
-    # getOption("repos")
-  ),
-  # renv configuration (equivalent to RENV_CONFIG_* env vars)
-  renv.config.ppm.enabled      = TRUE,
-  renv.config.ppm.default      = TRUE,
-  renv.config.rspm.enabled     = TRUE,
-  renv.config.repos.override   = "https://packagemanager.posit.co/cran/__linux__/noble/latest"
+  repos = c(CRAN = "https://p3m.dev/cran/__linux__/noble/latest"),
+  download.file.method = "libcurl",
+  renv.config.ppm.enabled = TRUE,
+  renv.config.ppm.default = TRUE,
+  renv.config.rspm.enabled = TRUE,
+  renv.config.repos.override =
+    "https://packagemanager.posit.co/cran/__linux__/noble/latest",
+  HTTPUserAgent = sprintf(
+    "R/%s R (%s)",
+    getRversion(),
+    paste(
+      getRversion(),
+      R.version[["platform"]],
+      R.version[["arch"]],
+      R.version[["os"]]
+    )
+  )
 )

@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 # a function to install apt packages only if they are not installed
 function apt_install() {
@@ -16,7 +16,7 @@ apt_install \
     curl \
     ca-certificates
 
-HUGO_VERSION=${HUGO_VERSION:-0.152.2}
+HUGO_VERSION=${HUGO_VERSION:-0.163.3}
 
 # Detect architecture
 ARCH=$(dpkg --print-architecture)
@@ -46,4 +46,3 @@ rm -rf /var/lib/apt/lists/*
 
 echo "Hugo installed successfully:"
 hugo version
-

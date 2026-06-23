@@ -1,19 +1,21 @@
 services:
-  static_serve:
-    container_name: static_serve
-    image: ghcr.io/endikau/nd_docker-shiny_serve:latest
-    # image: nd_docker-shiny_serve:local  
-    # image: static_serve:latest
-    # build:
-    #   context: ./runtime
-    #   dockerfile: static_serve.Dockerfile
-#     pull_policy: never
-#     working_dir: /nd.site
-#     volumes:
-#       - ~/Documents/endikau/nd.site:/project
-#       - ~/Documents/endikau/.cache/container:/root/.cache
-#       - ~/Documents/endikau/.cache/static_site/container:/root/.cache
-#     command: |
-#       Rscript --vanilla setup_envs.R
-#       sleep infinity
-#       quarto render
+  runtime:
+    image: nd_docker-runtime:local
+    build:
+      context: ./runtime
+      dockerfile: Dockerfile
+      target: runtime
+
+  shiny:
+    image: nd_docker-shiny_serve:local
+    build:
+      context: ./runtime
+      dockerfile: Dockerfile
+      target: shiny
+
+  static:
+    image: nd_docker-static_serve:local
+    build:
+      context: ./runtime
+      dockerfile: Dockerfile
+      target: static

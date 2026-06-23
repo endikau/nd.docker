@@ -1,35 +1,23 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-# a function to install apt packages only if they are not installed
-function apt_install() {
-    if ! dpkg -s "$@" >/dev/null 2>&1; then
-        if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
-            apt-get update
-        fi
-        apt-get install -y --no-install-recommends "$@"
-    fi
-}
-
-apt_install \
+apt-get update
+apt-get install -y --no-install-recommends \
+    ca-certificates \
+    cmake \
+    curl \
+    git \
     libcurl4-openssl-dev \
-    libicu-dev \
-    libnode-dev \
-    libxml2-dev \
-    libmagick++-dev \
-    libpoppler-cpp-dev \
     libglpk-dev \
     libgsl0-dev \
-    libprotobuf-dev \
-    libharfbuzz-dev \
+    libicu-dev \
+    libmagick++-dev \
+    libpoppler-cpp-dev \
     libfribidi-dev \
+    libharfbuzz-dev \
+    libprotobuf-dev \
     libprotoc-dev \
-    protobuf-compiler \
-    nodejs \
-    npm \
-    git-all \
-    locales-all \
-    cmake
+    libxml2-dev \
+    protobuf-compiler
 
-# Clean up
 rm -rf /var/lib/apt/lists/*
